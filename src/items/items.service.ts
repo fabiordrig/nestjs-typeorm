@@ -36,17 +36,21 @@ export class ItemsService {
   }
 
   async update(id: string, updateItemDto: UpdateItemDto) {
-    const item = await this.findOne(id);
+    await this.entityManager.transaction(async (transactionalEntityManager) => {
+      const item = await this.findOne(id);
 
-    item.public = updateItemDto.public;
+      item.public = updateItemDto.public;
 
-    const comments = updateItemDto.comments.map(
-      (comment) => new Comment(comment),
-    );
+      const comments = updateItemDto.comments.map(
+        (comment) => new Comment(comment),
+      );
 
-    item.comments = comments;
+      item.comments = comments;
 
-    await this.entityManager.save(item);
+      await this.entityManager.save(item);
+
+      await transactionalEntityManager.save(item);
+    });
   }
 
   async remove(id: string) {
