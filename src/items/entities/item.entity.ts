@@ -1,4 +1,3 @@
-import { AbstractEntity } from 'src/database/abstract.entity';
 import {
   Column,
   Entity,
@@ -8,6 +7,7 @@ import {
   OneToMany,
   OneToOne,
 } from 'typeorm';
+import { AbstractEntity } from './abstract.entity';
 import { Comment } from './comments.entity';
 import { Listing } from './listing.entity';
 import { Tag } from './tag.entity';

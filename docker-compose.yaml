@@ -13,6 +13,6 @@ services:
     container_name: pgadmin
     environment:
       PGADMIN_DEFAULT_EMAIL: fabiordrig@gmail.com
-      PGADMIN_DEFAULT_PASSWORD: 39422134f
+      PGADMIN_DEFAULT_PASSWORD: test123
     ports:
       - '80:80'
